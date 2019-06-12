@@ -1,0 +1,74 @@
+.absences{
+    --cell-size: 50px;
+    --names-width: calc(var(--cell-size) * 4);
+    --entries-width: calc(100% - var(--names-width));
+    --font-size: calc(var(--cell-size) / 3.125);
+    --cell-border: 1px solid rgba(34, 36, 38, .1);
+    --border-shadow: 0 1px 8px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.absences {
+    display: flex;
+    width: 100%;
+    padding:2rem;
+    box-shadow: var(--border-shadow);
+}
+
+.absences-names {
+    display: flex;
+    flex-direction: column;
+    width: var(--names-width);
+}
+
+.absences-name {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    background-color: #1a69a4;
+    border-bottom: 1px solid white;
+    height: var(--cell-size);
+}
+
+.absences-name > label {
+    color: #f2f2f2;
+    font-size: var(--font-size);
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.absences-entries {
+    display: flex;
+    flex-direction: row;
+    width: var(--entries-width);
+    overflow-x: auto;
+    box-shadow: var(--border-shadow);
+}
+
+.absence-column {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.absence-cell {
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border-top: var(--cell-border);
+    border-right: var(--cell-border);
+    height: var(--cell-size);
+    width: var(--cell-size);
+}
+
+.absence-column:first-child > .absence-cell {
+    border-left: var(--cell-border);
+}
+
+
+.absence-cell:last-child {
+    border-bottom: var(--cell-border);
+}
