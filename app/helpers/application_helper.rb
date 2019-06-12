@@ -23,12 +23,10 @@ module ApplicationHelper
     ]
   end
 
-  def render_absence_entries(counter)
-    index = 0
+  def render_absence_entries(fromDate, toDate)
     columns = ''
-    until index == counter
-      columns += wrap_in_column(render_day_entry_for(dummy_users))
-      index += 1
+    fromDate.upto(toDate).each do |date|
+      columns += wrap_in_column(render_day_entry_for(date, dummy_users))
     end
     columns.html_safe
   end
@@ -40,11 +38,14 @@ module ApplicationHelper
   end
 
   def render_absence_names(users)
+    user_header_entry = "<div class='absences-name absences-empty-name'>
+      <label></label>
+     </div>"
     user_entries = ''
     users.each do |user|
       user_entries += render_absence_name(user)
     end
-    user_entries.html_safe
+    (user_header_entry + user_entries).html_safe
   end
 
   private
@@ -55,11 +56,17 @@ module ApplicationHelper
      </div>"
   end
 
-  def render_day_entry_for(users)
+  def render_day_entry_for(date, users)
+    header_cell = "<div class='absence-header-cell noselect'>
+                    <div class='absence-header'>
+                      <p class='absence-day-name'>#{date.strftime("%A")[0..2]}</p>
+                      <p>#{date.strftime("%d")[0..2]}</p>
+                    </div>
+                   </div>"
     day_cells = ''
     users.each do |user|
       day_cells += '<div class="absence-cell"></div>'
     end
-    day_cells
+    header_cell + day_cells
   end
 end

@@ -1,17 +1,17 @@
-.absences{
+.absences {
     --cell-size: 50px;
     --names-width: calc(var(--cell-size) * 4);
     --entries-width: calc(100% - var(--names-width));
     --font-size: calc(var(--cell-size) / 3.125);
     --cell-border: 1px solid rgba(34, 36, 38, .1);
-    --border-shadow: 0 1px 8px rgba(0,0,0,0.1);
+    --border-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
 }
 
 .absences {
     display: flex;
     width: 100%;
-    padding:2rem;
+    padding: 2rem;
     box-shadow: var(--border-shadow);
 }
 
@@ -71,4 +71,61 @@
 
 .absence-cell:last-child {
     border-bottom: var(--cell-border);
+}
+
+.absence-header-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: transparent;
+    border: none;
+    padding: 0 1px;
+}
+
+.absence-header {
+    width: 100%;
+    color: #f2f2f2;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    background-color: indianred;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    height: var(--cell-size);
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.absence-header > p {
+    margin: 0;
+    padding: 0;
+}
+
+.absences-empty-name {
+    background-color: transparent;
+
+}
+
+.absence-day-name {
+    color: #333333;
+    background-color:#f2f2f2;
+    width:80%;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 0 5px rgba(0,0,0,0.25);
+    box-shadow: 0 0 5px rgba(0,0,0,0.25);
 }
