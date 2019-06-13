@@ -1,12 +1,42 @@
 <div class="ui grid container">
   <div class="row">
+    <%
+      from_date = DateTime.new(2010, 2, 1)
+      to_date = DateTime.new(2011, 6, 1)
+      absence_time = AbsenceTime.new(from_date, to_date)
+      summary = absence_time.summary
+    %>
     <div class="absences">
-      <div class="absences-names">
-        <%= render_absence_names(dummy_users) %>
+      <div class="absences-names-container">
+        <div class="absences-names-header">
+
+        </div>
+        <div class="absences-names-body">
+          <%= render_absence_names(dummy_users) %>
+        </div>
       </div>
-      <div class="absences-entries">
-        <%= render_absence_entries(DateTime.new(2010,2,1), DateTime.new(2010,6,1)) %>
+      <div class="absences-entries-container">
+        <div class="absences-entries-header" style="width:calc(<%= summary[:total] %> * var(--cell-size))">
+          <div class="absences-years">
+            <% summary[:years].each do |year_key, year_value| %>
+              <%= render_absence_time_box(year_key, year_value[:total]) %>
+            <% end %>
+          </div>
+          <div class="absences-months">
+            <% summary[:years].each do |_, values| %>
+              <% values[:months].each do |month_days_pair| %>
+                <% month_days_pair.each do |month_name, days_count| %>
+                  <%= render_absence_time_box(month_name, days_count) %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="absences-entries-body">
+          <%= render_absence_entries(from_date, to_date) %>
+        </div>
       </div>
     </div>
+    <% %>
   </div>
 </div>

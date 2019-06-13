@@ -1,9 +1,9 @@
 .absences {
-    --cell-size: 50px;
+    --cell-size: 35px;
     --names-width: calc(var(--cell-size) * 4);
     --entries-width: calc(100% - var(--names-width));
     --font-size: calc(var(--cell-size) / 3.125);
-    --cell-border: 1px solid rgba(34, 36, 38, .1);
+    --cell-border: 1px solid rgba(34, 36, 38, 0.1);
     --border-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
 }
@@ -15,10 +15,19 @@
     box-shadow: var(--border-shadow);
 }
 
-.absences-names {
+.absences-names-container {
     display: flex;
     flex-direction: column;
     width: var(--names-width);
+}
+
+.absences-names-header{
+    height:calc(var(--cell-size)*3);
+}
+
+.absences-names-body{
+    display:flex;
+    flex-direction:column;
 }
 
 .absences-name {
@@ -39,12 +48,60 @@
     font-weight: bold;
 }
 
-.absences-entries {
+.absences-entries-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: var(--entries-width);
     overflow-x: auto;
     box-shadow: var(--border-shadow);
+}
+
+.absences-entries-header{
+    height:calc(var(--cell-size)*2);
+}
+
+.absences-years{
+    display:flex;
+    height:var(--cell-size);
+}
+
+.absences-time-box{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-content: center;
+    align-items: center;
+    margin-bottom:4px;
+    border-radius: 0.5rem;
+}
+
+.absences-years > .absences-time-box{
+    background-color:#555555;
+    color:white;
+}
+
+.absences-months > .absences-time-box:nth-child(2n){
+    background-color:darkseagreen;
+    color:white;
+}
+
+.absences-months > .absences-time-box:nth-child(2n + 1){
+    background-color:cadetblue;
+    color:white;
+}
+
+.time-text{
+    font-weight:bold;
+}
+
+.absences-months{
+    display:flex;
+    height:var(--cell-size);
+}
+
+.absences-entries-body {
+    display: flex;
+    flex-direction: row;
 }
 
 .absence-column {
@@ -96,6 +153,7 @@
     align-content: center;
     justify-content: center;
     height: var(--cell-size);
+    font-size: var(--font-size);
 }
 
 .noselect {
@@ -113,11 +171,6 @@
     padding: 0;
 }
 
-.absences-empty-name {
-    background-color: transparent;
-
-}
-
 .absence-day-name {
     color: #333333;
     background-color:#f2f2f2;
@@ -125,7 +178,7 @@
     -webkit-border-radius: 0.5rem;
     -moz-border-radius: 0.5rem;
     border-radius: 0.5rem;
-    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.25);
-    -moz-box-shadow: 0 0 5px rgba(0,0,0,0.25);
-    box-shadow: 0 0 5px rgba(0,0,0,0.25);
+    -webkit-box-shadow: var(--border-shadow);
+    -moz-box-shadow: var(--border-shadow);
+    box-shadow: var(--border-shadow);
 }
